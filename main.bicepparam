@@ -1,5 +1,5 @@
 using 'main.bicep'
 
-param storageSku = 'Standard_LRS'
-param storageAccountName = toLower('MyStorageAccount')
+param location = 'westeurope'
+param name = 'bicep-deployed-rg-test'
 
