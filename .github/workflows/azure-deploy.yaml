@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths: ["**.bicep*"] # for multiple workflows, limit to a path: "ptn/avd/**.bicep*"
     types: [opened, synchronize]
+  environment:
+    name: Dev
 
 concurrency:
   group: ${{ github.workflow }}
