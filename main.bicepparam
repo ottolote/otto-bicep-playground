@@ -1,3 +1,5 @@
-@description('Specifies the location for all resources.')
-param location string
+using 'main.bicep'
+
+param storageSku string = 'Standard_LRS'
+param storageAccountName string = toLower('MyStorageAccount')
 
