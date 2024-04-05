@@ -30,9 +30,9 @@ env:
   version_ace_tool: "1.4"
 
 jobs:
-  environment:
-    name: Dev
   plan:
+    environment:
+      name: Dev
     name: 🗓️ Plan
     permissions:
       contents: read # for checkout
@@ -67,7 +67,7 @@ jobs:
   deploy:
     name: 🏃 Deploy
     needs: plan
-    environment: production
+    environment: Dev
     permissions:
       contents: write # for auto merge
       id-token: write # for Azure login with open id
