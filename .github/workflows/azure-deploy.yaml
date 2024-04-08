@@ -12,13 +12,14 @@ concurrency:
 permissions: {}
 
 env:
+  environment: Dev
   auto_merge: merge
-  azure_client_id: 841313b1-9f7e-4f34-84c2-150c3d2a28fd # when using a secret, remove this line and add the secret to each job below
+  azure_client_id: ${{ secrets.AZURE_CLIENT_ID }}
   azure_providers: Microsoft.Advisor,Microsoft.AlertsManagement,Microsoft.Authorization,Microsoft.Consumption,Microsoft.EventGrid,microsoft.insights,Microsoft.ManagedIdentity,Microsoft.Management,Microsoft.Network,Microsoft.PolicyInsights,Microsoft.ResourceHealth,Microsoft.Resources,Microsoft.Security
   azure_provider_wait_count: 30
   azure_provider_wait_seconds: 10
-  azure_subscription_id: c7d5f557-083b-4397-a5f8-b32f0b264552 # when using a secret, remove this line and add the secret to each job below
-  azure_tenant_id: 32091cb4-43fa-48cf-a2a3-970215901443 # when using a secret, remove this line and add the secret to each job below
+  azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  azure_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
   cost_threshold: 1000
   currency: EUR
   location: westeurope
@@ -32,6 +33,7 @@ env:
 jobs:
   plan:
     name: 🗓️ Plan
+    environment: ${{ environment }}
     permissions:
       contents: read # for checkout
       id-token: write # for Azure login with open id
@@ -65,7 +67,7 @@ jobs:
   deploy:
     name: 🏃 Deploy
     needs: plan
-    environment: Dev
+    environment: ${{ environment }}
     permissions:
       contents: write # for auto merge
       id-token: write # for Azure login with open id
