@@ -1,5 +1,6 @@
 targetScope = 'subscription'
 
+
 @description('Specifies the location for the resource group.')
 param location string = 'westeurope'
 
