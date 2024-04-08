@@ -31,7 +31,7 @@ env:
 
 jobs:
   plan:
-    name: 🗓️ Plan {{ env.environment }}
+    name: 🗓️ Plan 
     environment: ${{ env.environment }}
     permissions:
       contents: read # for checkout
@@ -64,7 +64,7 @@ jobs:
           version_ace_tool: ${{ env.version_ace_tool }}
 
   deploy:
-    name: 🏃 Deploy ${{ env.environment }}
+    name: 🏃 Deploy
     needs: plan
     environment: ${{ env.environment }}
     permissions:
