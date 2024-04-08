@@ -32,7 +32,6 @@ env:
 jobs:
   plan:
     name: 🗓️ Plan  Dev
-    environment:
     permissions:
       contents: read # for checkout
       id-token: write # for Azure login with open id
