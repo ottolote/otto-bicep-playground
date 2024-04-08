@@ -12,7 +12,6 @@ concurrency:
 permissions: {}
 
 env:
-  environment: Dev
   auto_merge: merge
   azure_client_id: ${{ secrets.AZURE_CLIENT_ID }}
   azure_providers: Microsoft.Advisor,Microsoft.AlertsManagement,Microsoft.Authorization,Microsoft.Consumption,Microsoft.EventGrid,microsoft.insights,Microsoft.ManagedIdentity,Microsoft.Management,Microsoft.Network,Microsoft.PolicyInsights,Microsoft.ResourceHealth,Microsoft.Resources,Microsoft.Security
@@ -33,7 +32,7 @@ env:
 jobs:
   plan:
     name: 🗓️ Plan
-    environment: ${{ env.environment }}
+    environment: Dev
     permissions:
       contents: read # for checkout
       id-token: write # for Azure login with open id
@@ -67,7 +66,7 @@ jobs:
   deploy:
     name: 🏃 Deploy
     needs: plan
-    environment: ${{ env.environment }}
+    environment: Dev
     permissions:
       contents: write # for auto merge
       id-token: write # for Azure login with open id
@@ -82,13 +81,12 @@ jobs:
         uses: innofactororg/bicep-action/.github/actions/deploy@v1
         with:
           auto_merge: ${{ env.auto_merge }}
-          azure_client_id: ${{ env.azure_client_id }} # for secret, use ${{ secrets.AZURE_CLIENT_ID }}
-          # azure_client_secret: ${{ secrets.AZURE_CLIENT_SECRET }} # use this if choosing Option 2 in Get started
+          azure_client_id: ${{ env.azure_client_id }}
           azure_providers: ${{ needs.plan.outputs.providers }}
           azure_provider_wait_count: ${{ env.azure_provider_wait_count }}
           azure_provider_wait_seconds: ${{ env.azure_provider_wait_seconds }}
-          azure_subscription_id: ${{ env.azure_subscription_id }} # for secret, use ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          azure_tenant_id: ${{ env.azure_tenant_id }} # for secret, use ${{ secrets.AZURE_TENANT_ID }}
+          azure_subscription_id: ${{ env.azure_subscription_id }}
+          azure_tenant_id: ${{ env.azure_tenant_id }}
           location: ${{ env.location }}
           log_severity: ${{ env.log_severity }}
           scope: ${{ env.scope }}
