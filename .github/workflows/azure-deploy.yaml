@@ -31,8 +31,6 @@ env:
 
 jobs:
   plan:
-    environment:
-      name: Dev
     name: 🗓️ Plan
     permissions:
       contents: read # for checkout
