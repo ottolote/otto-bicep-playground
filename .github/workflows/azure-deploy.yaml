@@ -12,7 +12,7 @@ concurrency:
 permissions: {}
 
 env:
-  auto_merge: squash
+  auto_merge: merge
   azure_client_id: 841313b1-9f7e-4f34-84c2-150c3d2a28fd # when using a secret, remove this line and add the secret to each job below
   azure_providers: Microsoft.Advisor,Microsoft.AlertsManagement,Microsoft.Authorization,Microsoft.Consumption,Microsoft.EventGrid,microsoft.insights,Microsoft.ManagedIdentity,Microsoft.Management,Microsoft.Network,Microsoft.PolicyInsights,Microsoft.ResourceHealth,Microsoft.Resources,Microsoft.Security
   azure_provider_wait_count: 30
