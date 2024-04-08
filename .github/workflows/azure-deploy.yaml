@@ -2,7 +2,7 @@ name: Azure Deploy
 on:
   pull_request:
     branches: [main]
-      # paths: ["**.bicep*"] # for multiple workflows, limit to a path: "ptn/avd/**.bicep*"
+    paths: ["**.bicep*"] # for multiple workflows, limit to a path: "ptn/avd/**.bicep*"
     types: [opened, synchronize]
 
 concurrency:
@@ -62,7 +62,7 @@ jobs:
           version_ace_tool: ${{ env.version_ace_tool }}
 
   deploy:
-    name: 🏃 Deploy
+    name: 🏃 Deploy Dev
     needs: plan
     environment: Dev
     permissions:
