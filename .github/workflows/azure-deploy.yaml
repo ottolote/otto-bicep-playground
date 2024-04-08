@@ -31,7 +31,8 @@ env:
 
 jobs:
   plan:
-    name: 🗓️ Plan
+    name: 🗓️ Plan {{ env.environment }}
+    environment: ${{ env.environment }}
     permissions:
       contents: read # for checkout
       id-token: write # for Azure login with open id
@@ -63,9 +64,9 @@ jobs:
           version_ace_tool: ${{ env.version_ace_tool }}
 
   deploy:
-    name: 🏃 Deploy
+    name: 🏃 Deploy ${{ env.environment }}
     needs: plan
-    environment: Dev
+    environment: ${{ env.environment }}
     permissions:
       contents: write # for auto merge
       id-token: write # for Azure login with open id
